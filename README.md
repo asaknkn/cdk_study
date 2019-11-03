@@ -1,3 +1,8 @@
+# CDKの勉強
+## 作りたい構成
+
+* APIGW → Lambda → SQS → Lambda
+
 # Useful commands
 
  * `npm run build`   compile typescript to js
