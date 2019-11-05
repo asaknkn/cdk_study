@@ -1,0 +1,3 @@
+{
+  "app": "npx ts-node bin/ckd-workshop_ver12.13.0.ts"
+}
