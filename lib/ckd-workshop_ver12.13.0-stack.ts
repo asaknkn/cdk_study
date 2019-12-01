@@ -18,14 +18,6 @@ export class CkdWorkshopVer12130Stack extends cdk.Stack {
       queueName: "SQS"
     });
 
-    /*
-    // define an API Gateway REST API resource backed by our "hello" function
-    const api = new apigw.LambdaRestApi(this, 'Endpoint', {
-      handler: hello,
-      proxy: false
-    });
-    */
-
     // define as API Gateway
     const restapi = new apigw.RestApi(this, "ApiGW", {
       restApiName: "ApiGW"

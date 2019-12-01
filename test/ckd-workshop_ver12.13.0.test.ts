@@ -8,14 +8,42 @@ test('SQS Queue Created', () => {
     const stack = new CkdWorkshopVer12130.CkdWorkshopVer12130Stack(app, 'MyTestStack');
     // THEN
     expectCDK(stack).to(haveResource("AWS::SQS::Queue",{
-      VisibilityTimeout: 300
+      VisibilityTimeout: 300,
+      ReceiveMessageWaitTimeSeconds: 20,
+      QueueName: "SQS"
     }));
 });
 
-test('SNS Topic Created', () => {
+test('RestApi Created', () => {
   const app = new cdk.App();
   // WHEN
   const stack = new CkdWorkshopVer12130.CkdWorkshopVer12130Stack(app, 'MyTestStack');
   // THEN
-  expectCDK(stack).to(haveResource("AWS::SNS::Topic"));
+  expectCDK(stack).to(haveResource("AWS::ApiGateway::RestApi",{
+    Name: "ApiGW"
+  }));
 });
+
+/** 
+test('SenderLambda Created', () => {
+  const app = new cdk.App();
+  // WHEN
+  const stack = new CkdWorkshopVer12130.CkdWorkshopVer12130Stack(app, 'MyTestStack');
+  
+  // THEN
+  expectCDK(stack).to(haveResource("AWS::Lambda::Function",{
+    FunctionName: "sendlambda",
+    Runtime: "nodejs8.10",
+    Handler: "sendlambda.handler",
+    Environment: {
+      sqsURL: {
+        Variables: {
+          sqsURL: {
+            Ref: "CdkWorkshopQueue50D9D426"
+          }
+        }
+      }
+    }
+  }));
+});
+*/
